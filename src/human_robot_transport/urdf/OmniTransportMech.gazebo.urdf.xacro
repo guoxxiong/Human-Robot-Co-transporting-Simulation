@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<robot name="follower" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find human_robot_transport)/omni_description/urdf/common_properties.xacro"/>
+  <xacro:include filename="$(find human_robot_transport)/omni_description/urdf/omni.gazebo.xacro"/>
+
+  <!--xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="20" samples="360" gpu="false">
+    <origin xyz="0 0 0.10" rpy="0 0 0" />
+  </xacro:VLP-16-->
+
+  <xacro:property name="r200_cam_rgb_px" value="0.005"/>
+  <xacro:property name="r200_cam_rgb_py" value="0.018"/>
+  <xacro:property name="r200_cam_rgb_pz" value="0.013"/>
+  <xacro:property name="r200_cam_depth_offset" value="0.01"/>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0.010" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/bases/base_link.stl" />
+      </geometry>
+      <material name="white"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/bases/base_link.stl" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0.00378663513268997 9.40774172533659E-09 0.0314233104502576" rpy="0 0 0" />
+      <mass  value="1.6508919043092" />
+      <inertia ixx="0.0196254631580707" ixy="-6.01430009402836E-11" ixz="-0.000206095816270248"
+               iyy="0.0196677902371779" iyz="1.90034891428728E-10"
+               izz="0.0353923816890368" />
+    </inertial>
+  </link>
+
+  <link name="wheel_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_1.stl" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_1.stl" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255420785 -0.00219029618447689 -0.0869776983683515" rpy="0 0 0" />
+      <mass value="1.26046104063225" />
+      <inertia ixx="0.00358551237977162" ixy="-5.35757383827677E-07" ixz="-9.7742061913025E-06"
+               iyy="0.00356891337593086" iyz="-5.2157594181081E-05"
+               izz="0.000632447806398812" />
+    </inertial>
+  </link>
+
+  <joint name="base_to_wheel1" type="fixed">
+    <origin xyz="0.274999999999979 -0.0109314796425938 0.0326524329692152" rpy="-1.5707963267949 -6.12303176911189E-17 -1.5707963267949" />
+    <parent link="base_link" />
+    <child link="wheel_1" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wheel_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_2.stl" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_2.stl" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255442737 0.00219029629808571 0.0869776978531889" rpy="0 0 0" />
+      <mass value="1.26046106534982" />
+      <inertia ixx="0.00358551231200165" ixy="5.3575737679716E-07" ixz="9.77420636918858E-06"
+               iyy="0.00356891330797798" iyz="-5.21575978589779E-05"
+               izz="0.000632447806573278" />
+    </inertial>
+  </link>
+
+  <joint name="base_to_wheel2" type="fixed">
+    <origin xyz="-0.128033060928559 0.243622725861994 0.0326524329692152" rpy="1.5707963267949 3.06151588454563E-17 0.523598775596354" />
+    <parent link="base_link" />
+    <child link="wheel_2" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wheel_3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_3.stl" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://omni_description/meshes/wheels/wheel_3.stl" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="-0.0110093255220512 0.0021902960708142 0.0869776988816526" rpy="0 0 0" />
+      <mass value="1.26046101591689" />
+      <inertia ixx="0.00358551244745713" ixy="5.35757376420613E-07" ixz="9.77420528667985E-06"
+               iyy="0.00356891344380256" iyz="-5.21575905001385E-05"
+               izz="0.000632447806238922" />
+    </inertial>
+  </link>
+
+  <joint name="base_to_wheel3" type="fixed">
+    <origin xyz="-0.14696693907143 -0.232691246219403 0.0326524329692152" rpy="1.5707963267949 3.06151588456647E-17 2.61799387798951" />
+    <parent link="base_link" />
+    <child link="wheel_3" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- imu joint -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0 0.068" rpy="0 0 0"/>
+  </joint>
+
+  <!-- imu data -->
+  <link name="imu_link"/>
+
+  <!-- Hokuyo joint -->
+  <joint name="hokuyo_joint" type="fixed">
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <axis xyz="0 1 0" />
+    <child link="hokuyo_link"/>
+  </joint>
+
+  <!-- Hokuyo Laser -->
+  <link name="hokuyo_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://omni_description/meshes/sensors/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <link
+    name="Base_Link">
+    <inertial>
+      <origin
+        xyz="-1.5124E-05 5.6925E-17 0.018896"
+        rpy="0 0 0" />
+      <mass
+        value="7.6794" />
+      <inertia
+        ixx="0.074281"
+        ixy="2.5898E-19"
+        ixz="-2.5858E-20"
+        iyy="0.074269"
+        iyz="5.7099E-21"
+        izz="0.13323" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Base_Link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Base_Link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="Base_Link_Joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.085"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Base_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-0.031049 1.5053E-18 0.0057292"
+        rpy="0 0 0" />
+      <mass
+        value="2.3714" />
+      <inertia
+        ixx="0.017705"
+        ixy="2.7029E-19"
+        ixz="1.1405E-21"
+        iyy="0.017693"
+        iyz="-4.3582E-23"
+        izz="0.035349" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint1"
+    type="fixed">
+    <origin
+      xyz="0 0 0.3"
+      rpy="0 0 0" />
+    <parent
+      link="Base_Link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="2.6747E-06 3.9417E-07 0.002683"
+        rpy="0 0 0" />
+      <mass
+        value="0.13629" />
+      <inertia
+        ixx="0.00024629"
+        ixy="3.2485E-20"
+        ixz="5.8377E-22"
+        iyy="0.00024629"
+        iyz="7.7047E-22"
+        izz="0.00048984" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint2"
+    type="fixed">
+    <origin
+      xyz="0.10525 0 0.025"
+      rpy="0 0 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Link3">
+    <inertial>
+      <origin
+        xyz="0.020099 3.7557E-15 -0.0047053"
+        rpy="0 0 0" />
+      <mass
+        value="0.51766" />
+      <inertia
+        ixx="0.00017227"
+        ixy="-3.1973E-17"
+        ixz="-2.0124E-18"
+        iyy="0.0018071"
+        iyz="-4.2362E-21"
+        izz="0.0019734" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link3.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="DiscToSlide"
+    type="revolute">
+    <origin
+      xyz="0 0 0.017"
+      rpy="0 0 0" />
+    <parent
+      link="Link2" />
+    <child
+      link="Link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1416"
+      upper="3.1416"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Link4Slider">
+    <inertial>
+      <origin
+        xyz="1.6653E-16 1.2924E-15 0.0057417"
+        rpy="0 0 0" />
+      <mass
+        value="0.28597" />
+      <inertia
+        ixx="0.00027211"
+        ixy="3.0917E-20"
+        ixz="-3.9445E-20"
+        iyy="0.00016554"
+        iyz="-5.4517E-20"
+        izz="0.00039835" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link4Slider.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://FollowerTransportMech/meshes/Link4Slider.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="SlideToSlider"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.003"
+      rpy="0 0 0" />
+    <parent
+      link="Link3" />
+    <child
+      link="Link4Slider" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.04"
+      upper="0.12"
+      effort="0"
+      velocity="0" />
+  </joint>
+  
+  <gazebo reference="base_link">
+    <material>Gazebo/Pioneer2Body</material>
+  </gazebo>
+  <gazebo reference="Base_Link">
+    <material>Gazebo/Pioneer2Body</material>
+  </gazebo>
+  <gazebo reference="Link1">
+    <material>Gazebo/Pioneer2Body</material>
+  </gazebo>
+  <gazebo reference="Link2">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="Link3">
+    <material>Gazebo/Pioneer2Body</material>
+  </gazebo>
+  <gazebo reference="Link4Slider">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="board" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find human_robot_transport)/urdf/materials.xacro"/>
+  <xacro:include filename="$(find human_robot_transport)/omni_description/urdf/board.gazebo.xacro"/>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0.010" rpy="0 0 0"/>
+  </joint>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-2.1523E-05 -4.5899E-06 0.018968"
+        rpy="0 0 0" />
+      <mass
+        value="5" />
+      <inertia
+        ixx="0.0013913"
+        ixy="-1.3777E-07"
+        ixz="-5.7294E-08"
+        iyy="0.036842"
+        iyz="7.6389E-21"
+        izz="0.038117" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/base_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Forward_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0.016"
+        rpy="0 0 0" />
+      <mass
+        value="0.58749" />
+      <inertia
+        ixx="0.00040087"
+        ixy="-6.4154E-20"
+        ixz="-3.1579E-22"
+        iyy="0.00040087"
+        iyz="-4.1389E-21"
+        izz="0.00072532" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/Forward_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/Forward_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Forward"
+    type="fixed">
+    <origin
+      xyz="0.47 0 -0.03"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Forward_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Backward_Link">
+    <inertial>
+      <origin
+        xyz="0 -2.7756E-17 0.015966"
+        rpy="0 0 0" />
+      <mass
+        value="0.42759" />
+      <inertia
+        ixx="0.0003677"
+        ixy="3.1116E-21"
+        ixz="-1.7258E-20"
+        iyy="0.00014678"
+        iyz="8.951E-21"
+        izz="0.00045914" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/Backward_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://WoodBoard/meshes/Backward_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Backward"
+    type="fixed">
+    <origin
+      xyz="-0.47 0 -0.03"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Backward_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="Forward_Link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  <gazebo reference="Backward_Link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+  
+</robot>

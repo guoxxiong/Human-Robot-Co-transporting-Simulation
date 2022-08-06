@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="TransportingMechanism">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-6.599730249133E-05 -3.13511483974998E-07 0.0025"
+        rpy="0 0 0" />
+      <mass
+        value="1.75987882412007" />
+      <inertia
+        ixx="0.0175909893539343"
+        ixy="5.81100410503333E-08"
+        ixz="-6.53347685425368E-23"
+        iyy="0.0175787568852369"
+        iyz="-2.8146577477927E-23"
+        izz="0.0351624134107373" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-6.599730249133E-05 -3.13511483975019E-07 0.00250000000000006"
+        rpy="0 0 0" />
+      <mass
+        value="1.75987882412007" />
+      <inertia
+        ixx="0.0175909893539343"
+        ixy="5.81100410503287E-08"
+        ixz="1.6080971543942E-22"
+        iyy="0.0175787568852369"
+        iyz="4.06030668982455E-24"
+        izz="0.0351624134107374" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint1"
+    type="fixed">
+    <origin
+      xyz="0 0 0.805"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="0 -5.96311194867027E-18 0.00448606775383986"
+        rpy="0 0 0" />
+      <mass
+        value="0.119329705575241" />
+      <inertia
+        ixx="0.000245617226061354"
+        ixy="3.28377778486481E-20"
+        ixz="-1.22949370487284E-22"
+        iyy="0.000245617226061354"
+        iyz="7.67238384932997E-22"
+        izz="0.000489630790176387" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint2"
+    type="fixed">
+    <origin
+      xyz="0.10525 0.00049983 0.055"
+      rpy="0 0 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Link3">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 -1.30104260698261E-17 0.00413963416314911"
+        rpy="0 0 0" />
+      <mass
+        value="0.148373208599314" />
+      <inertia
+        ixx="1.56796689207446E-05"
+        ixy="-8.76443500851748E-05"
+        ixz="7.19058587204207E-22"
+        iyy="0.000584989922626546"
+        iyz="5.32822313470423E-23"
+        izz="0.000599182426206679" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Slide"
+    type="revolute">
+    <origin
+      xyz="0 0 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="Link2" />
+    <child
+      link="Link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1415926"
+      upper="3.1415926"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Link4">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 -3.46944695195361E-18 0.00550676218546409"
+        rpy="0 0 0" />
+      <mass
+        value="0.0457290667018718" />
+      <inertia
+        ixx="4.43011229784629E-06"
+        ixy="-9.17380197366025E-08"
+        ixz="-1.29980552786867E-21"
+        iyy="5.02601374773961E-06"
+        iyz="4.20332232465609E-23"
+        izz="8.61981410265708E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://TransportingMechanism/meshes/Link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Slider"
+    type="prismatic">
+    <origin
+      xyz="0.086339 0.012991 0"
+      rpy="0 0 0" />
+    <parent
+      link="Link3" />
+    <child
+      link="Link4" />
+    <axis
+      xyz="0.98887 0.14879 0" />
+    <limit
+      lower="-0.08"
+      upper="0.08"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
