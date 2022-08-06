@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--
+  <group ns="/robot1">
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" />
+  </group>
+  -->
+
+  <!-- 广播以map为坐标系 的robot1的姿态信息 -->
+  <node name="robot1_tf_broadcaster" pkg="human_robot_transport" type="robot_tf_broadcaster.py" respawn="false" >
+    <param name="robot" type="string" value="robot1" />
+  </node>
+
+  <!-- 广播以map为坐标系 的robot2的姿态信息 -->
+  <node name="robot2_tf_broadcaster" pkg="human_robot_transport" type="robot_tf_broadcaster.py" respawn="false" >
+    <param name="robot" type="string" value="robot2"/>
+  </node>
+  
+  <!--node name="predict_next_position" pkg="human_robot_transport" type="predict_next_position.py" respawn="false"/-->
+  
+  <!--node name="predict_follower" pkg="human_robot_transport" type="predict_follower.py" respawn="false"/-->
+  
+  <node name="laser_publish" pkg="human_robot_transport" type="laser_publish.py" respawn="false"/>
+  
+  <node name="laser_fix" pkg="human_robot_transport" type="laser_fix.py" respawn="false"/>
+  
+  <!--node name="output_degree_gradient" pkg="human_robot_transport" type="output_degree_diff.py" respawn="false"/-->
+  
+  <!--node name="free_space_parse" pkg="human_robot_transport" type="free_space_parse.py" respawn="false"/-->
+  
+  <node name="output_y_offset" pkg="human_robot_transport" type="LaserScan_to_PointCloud2D.py" respawn="false"/>
+  
+  <node name="robot2_y_compensate" pkg="human_robot_transport" type="human_robot_transport_box_roi_compensate" respawn="false"/>
+  
+  <!--node name="robot2_next_pose_pub" pkg="human_robot_transport" type="next_pose_pub2.py" respawn="false"/-->
+  
+  <node name="robot2_next_state_pub" pkg="human_robot_transport" type="robot_next_state.py" respawn="false"/>
+  
+  <node name="follow_motion_planning" pkg="human_robot_transport" type="follow_motion_planning.py" respawn="false"/>
+  
+  <node name="follower" pkg="human_robot_transport" type="follow_and_obstacle_avoidance.py" respawn="false"/>
+  
+  <node name="smoothing" pkg="human_robot_transport" type="velocity_smooth.py" respawn="false"/>
+  
+  <!--node name="cmd_pub" pkg="human_robot_transport" type="cmd_pub.py" respawn="false"/-->
+  
+  <node name="rviz_pcl" pkg="rviz" type="rviz" args="-d $(find human_robot_transport)/config/pcl.rviz" required="true"/>
+  
+  <!--node name="distance_plot" pkg="human_robot_transport" type="distance_plot.py" respawn="false"/>
+  
+  <node name="linear_speed_plot" pkg="human_robot_transport" type="linear_speed_plot.py" respawn="false"/>
+  
+  <node name="angular_speed_plot" pkg="human_robot_transport" type="angular_speed_plot.py" respawn="false"/-->
+  
+</launch>
