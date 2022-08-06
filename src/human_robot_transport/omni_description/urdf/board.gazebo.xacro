@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="board" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- robot model -->
+  <!--gazebo reference="base_link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.5</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/Orange</material>
+  </gazebo-->
+
+  <gazebo reference="Forward_Link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>5000000.0</kp>
+    <kd>0.002</kd>
+    <minDepth>0</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="Backward_Link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>5000000.0</kp>
+    <kd>0.002</kd>
+    <minDepth>0</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+
+  <!-- Drive controller -->
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>200.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+</robot>
